@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAPI, openModal, closeModal } from '../actions';
 import Modal from 'react-modal';
 import './Search.css';
+import logo from '../image/logo.png';
 
 const customStyles = {
   content: {
@@ -25,6 +26,7 @@ class Search extends Component {
     };
     Modal.setAppElement('#root');
     this.formatarCEP = this.formatarCEP.bind(this);
+    this.formatarSearch = this.formatarSearch.bind(this);
   }
 
   formatarCEP(str) {
@@ -35,6 +37,12 @@ class Search extends Component {
       this.setState({ inputValue: str.replace(re, '$1.$2-$3') });
     } else {
       this.setState({ inputValue: str });
+    }
+  }
+
+  formatarSearch(str) {
+    if (/[.-]/g.test(str)) {
+      this.setState({ search: str.replace(/[.-]/g, '') });
     }
   }
 
@@ -50,14 +58,16 @@ class Search extends Component {
     const { search, inputValue } = this.state;
     return (
       <div className="flex">
+        <img src={logo} alt="cep finder" />
         <div>
           <input
             type="text"
             onChange={({ target }) => {
-              this.formatarCEP(target.value);
               this.setState({
                 search: target.value,
               });
+              this.formatarCEP(target.value);
+              this.formatarSearch(target.value);
             }}
             placeholder="CEP"
             className="input"
