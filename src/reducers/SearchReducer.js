@@ -1,17 +1,17 @@
-import { GET_USER, REQUEST_API, REQUEST_SUCESS } from '../actions';
+import { GET_CEP, REQUEST_API, REQUEST_SUCESS } from '../actions';
 
 const INITIAL_STATE = {
   isLoading: true,
   search: '',
-  apiSearchUsers: [],
+  apiSearchCEP: [],
 };
 
 function SearchReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case GET_USER:
+    case GET_CEP:
       return {
         ...state,
-        search: action.user,
+        search: action.CEP,
       };
     case REQUEST_API:
       return {
@@ -22,7 +22,7 @@ function SearchReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoading: false,
-        apiSearchUsers: action.payload,
+        apiSearchCEP: action.payload,
       };
     default:
       return state;
