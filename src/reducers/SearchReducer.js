@@ -1,9 +1,16 @@
-import { GET_CEP, REQUEST_API, REQUEST_SUCESS } from '../actions';
+import {
+  GET_CEP,
+  REQUEST_API,
+  REQUEST_SUCESS,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+} from '../actions';
 
 const INITIAL_STATE = {
   isLoading: true,
   search: '',
   apiSearchCEP: [],
+  modalIsOpen: false,
 };
 
 function SearchReducer(state = INITIAL_STATE, action) {
@@ -23,6 +30,16 @@ function SearchReducer(state = INITIAL_STATE, action) {
         ...state,
         isLoading: false,
         apiSearchCEP: action.payload,
+      };
+    case OPEN_MODAL:
+      return {
+        ...state,
+        modalIsOpen: true,
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        modalIsOpen: false,
       };
     default:
       return state;
