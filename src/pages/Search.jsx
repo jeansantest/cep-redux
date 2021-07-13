@@ -30,7 +30,7 @@ class Search extends Component {
   }
 
   formatarCEP(str) {
-    const re = /^(\d{2})\.*(\d{3})-*(\d{3})$/;
+    const re = /^(\d{2})(\d{3})(\d{3})$/;
     if (/[A-z]/g.test(str)) {
       this.setState({ inputValue: str.replace(/[A-z]/g, '') });
     } else if (re.test(str)) {
